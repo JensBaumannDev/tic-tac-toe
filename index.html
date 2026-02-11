@@ -13,6 +13,22 @@
     </header>
     <main class="game-area">
       <div class="game-wrapper">
+        <div class="legend-title">Who's next?</div>
+        <div class="player-legend" id="player-legend">
+          <div class="legend-item" data-shape="circle" data-label="Circle">
+            <svg class="legend-icon" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+              <circle class="legend-circle" cx="35" cy="35" r="28"></circle>
+            </svg>
+          </div>
+          <div class="legend-item" data-shape="cross" data-label="Cross">
+            <svg class="legend-icon" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+              <line class="legend-cross" x1="17" y1="17" x2="53" y2="53"></line>
+              <line class="legend-cross" x1="53" y1="17" x2="17" y2="53"></line>
+            </svg>
+          </div>
+        </div>
+        <div class="legend-separator"></div>
+        <div class="game-status" id="game-status" aria-live="polite"></div>
         <div id="Container"></div>
         <button class="restart-button" onclick="resetGame()" type="button">Play again!</button>
       </div>

@@ -15,7 +15,7 @@ body {
 .game-header h1 {
   margin: 0;
   color: #ffffff;
-  font-size: 36px;
+  font-size: 48px;
   letter-spacing: 1px;
 }
 
@@ -24,7 +24,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 16px 0 32px;
+  padding: 8px 0 32px;
 }
 
 .game-wrapper {
@@ -32,6 +32,97 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 24px;
+}
+
+.legend-title {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: -4px;
+}
+
+.player-legend {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.legend-separator {
+  width: min(320px, 80vw);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  margin: 12px 0 6px;
+}
+
+.game-status {
+  min-height: 24px;
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.legend-item {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 10px 12px;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  opacity: 0.35;
+  transition:
+    opacity 150ms ease,
+    border-color 150ms ease,
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
+}
+
+.legend-item.active {
+  opacity: 1;
+  border-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.35);
+  transform: scale(1.08);
+}
+
+.legend-item::after {
+  content: attr(data-label);
+  color: #ffffff;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.legend-item.active::after {
+  color: #ffffff;
+}
+
+.legend-icon {
+  width: 42px;
+  height: 42px;
+  display: block;
+}
+
+.legend-circle {
+  fill: none;
+  stroke: #00b0ef;
+  stroke-width: 6px;
+}
+
+.legend-cross {
+  fill: none;
+  stroke: #ffc000;
+  stroke-width: 6px;
+  stroke-linecap: round;
 }
 
 .restart-button {

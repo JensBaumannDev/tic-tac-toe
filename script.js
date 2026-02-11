@@ -2,6 +2,8 @@ let fields = [null, null, null, null, null, null, null, null, null];
 
 function init() {
   render();
+  updateLegend();
+  updateStatus("");
 }
 
 function resetGame() {
@@ -11,6 +13,35 @@ function resetGame() {
     overlay.remove();
   }
   render();
+  updateLegend();
+  updateStatus("");
+}
+
+function updateStatus(message) {
+  const status = document.getElementById("game-status");
+  if (!status) {
+    return;
+  }
+  status.textContent = message;
+}
+
+function getNextShape() {
+  const movesPlayed = fields.filter((v) => v !== null).length;
+  return movesPlayed % 2 === 0 ? "circle" : "cross";
+}
+
+function updateLegend() {
+  const legend = document.getElementById("player-legend");
+  if (!legend) {
+    return;
+  }
+
+  const nextShape = getNextShape();
+  const items = legend.querySelectorAll(".legend-item");
+  items.forEach((item) => {
+    const isActive = item.dataset.shape === nextShape;
+    item.classList.toggle("active", isActive);
+  });
 }
 
 function generateCircleSVG() {
@@ -32,15 +63,21 @@ function generateCrossSVG() {
 }
 
 function handleCellClick(td, index) {
-  const movesPlayed = fields.filter((v) => v !== null).length;
-  const shape = movesPlayed % 2 === 0 ? "circle" : "cross";
+  const shape = getNextShape();
 
   fields[index] = shape;
   td.innerHTML = shape === "circle" ? generateCircleSVG() : generateCrossSVG();
 
   td.removeAttribute("onclick");
 
-  checkGameOver();
+  const gameResult = checkGameOver();
+  if (gameResult === "win") {
+    updateStatus(`${shape === "circle" ? "Circle" : "Cross"} wins`);
+  } else if (gameResult === "draw") {
+    updateStatus("Draw");
+  } else {
+    updateLegend();
+  }
 }
 
 function checkGameOver() {
@@ -60,9 +97,17 @@ function checkGameOver() {
     if (fields[a] && fields[a] === fields[b] && fields[a] === fields[c]) {
       drawWinningLine(combo);
       disableBoard();
-      return;
+      return "win";
     }
   }
+
+  const hasEmptyCell = fields.some((value) => value === null);
+  if (!hasEmptyCell) {
+    disableBoard();
+    return "draw";
+  }
+
+  return "ongoing";
 }
 
 function disableBoard() {
