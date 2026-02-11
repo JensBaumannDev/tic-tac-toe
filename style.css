@@ -3,11 +3,28 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
   background-color: #323232;
   font-family: "Open Sans", sans-serif;
+}
+
+.game-header {
+  padding: 24px 0 8px;
+  text-align: center;
+}
+
+.game-header h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 36px;
+  letter-spacing: 1px;
+}
+
+.game-area {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 0 32px;
 }
 
 .game-wrapper {
