@@ -1,7 +1,25 @@
-let fields = [null, null, null, null, null, null, null];
+let fields = [null, "circle", null, null, "cross", null, null];
 
 function init() {
   render();
+}
+
+function generateCircleSVG() {
+  return `
+    <svg class="circle-svg" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+      <circle class="circle-outline" cx="35" cy="35" r="28"></circle>
+      <circle class="circle-progress" cx="35" cy="35" r="28"></circle>
+    </svg>
+  `;
+}
+
+function generateCrossSVG() {
+  return `
+    <svg class="cross-svg" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+      <line class="cross-line cross-line-first" x1="17" y1="17" x2="53" y2="53"></line>
+      <line class="cross-line cross-line-second" x1="53" y1="17" x2="17" y2="53"></line>
+    </svg>
+  `;
 }
 
 function render() {
@@ -16,9 +34,9 @@ function render() {
       let symbol = "";
 
       if (fields[index] === "circle") {
-        symbol = "o";
+        symbol = generateCircleSVG();
       } else if (fields[index] === "cross") {
-        symbol = "x";
+        symbol = generateCrossSVG();
       }
 
       html += `<td>${symbol}</td>`;
