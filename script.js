@@ -4,6 +4,15 @@ function init() {
   render();
 }
 
+function resetGame() {
+  fields = Array(9).fill(null);
+  const overlay = document.getElementById("winning-line");
+  if (overlay) {
+    overlay.remove();
+  }
+  render();
+}
+
 function generateCircleSVG() {
   return `
     <svg class="circle-svg" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
