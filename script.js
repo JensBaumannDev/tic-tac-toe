@@ -101,7 +101,7 @@ function drawWinningLine(combo) {
 
   overlay.setAttribute("viewBox", `0 0 ${container.clientWidth} ${container.clientHeight}`);
   overlay.innerHTML = `
-    <line x1="${startX}" y1="${startY}" x2="${endX}" y2="${endY}" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
+    <line x1="${startX}" y1="${startY}" x2="${endX}" y2="${endY}" stroke="#ffffffa3" stroke-width="6" stroke-linecap="round" />
   `;
 }
 
